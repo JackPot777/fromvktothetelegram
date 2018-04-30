@@ -12,13 +12,13 @@ $chbade = mt_rand (0, count($texed)-1);
 $text = urlencode($texed[$chbade]);
 $countMess = $jsonM['response']['0'];
 $uids = array('jmg');
-           for($i=1;$i<=$countMess;$i++){
-                   $senderUid = $jsonM['response'][$i]['uid'];
-                   $uids[$i] = $senderUid;
-           }
-                   $uids = array_values(array_unique($uids));
-                   for($q=1;$q<=count($uids)-1;$q++){
-                           echo $uids[$q].'<br>';
+for($i=1;$i<=$countMess;$i++){
+  $senderUid = $jsonM['response'][$i]['uid'];
+  $uids[$i] = $senderUid;
+}
+$uids = array_values(array_unique($uids));
+for($q=1;$q<=count($uids)-1;$q++){
+echo $uids[$q].'<br>';
 //Получаем имена и сообщения чтобы отправить в телеграм
 $usersnamesGet = curl('https://api.vk.com/method/users.get?version=5.4&lang=0&name_case=gen&user_ids='.$uids[$q]);
 $messagesGet = curl('https://api.vk.com/method/messages.get?version=5.4&access_token='.$access_token);
